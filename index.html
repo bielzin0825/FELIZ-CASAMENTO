@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Felicidades aos Noivos</title>
+    <title>Felicidades ao CASALL</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     
-    <!-- CSS Integrado para evitar erros -->
     <style>
         :root {
             --primary: #8b7355;
@@ -71,7 +70,6 @@
 
         .ampersand { color: var(--secondary); margin: 0 10px; }
 
-        /* Estilo da Galeria de Fotos */
         .photo-gallery { margin: 40px 0; }
         .gallery-grid {
             display: grid;
@@ -100,6 +98,31 @@
 
         .quote { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--primary); }
 
+        .messages-display {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .message-card {
+            background: var(--light);
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--secondary);
+            border-radius: 4px;
+        }
+
+        .message-author {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .message-text {
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
         .form-container {
             background: var(--light);
             padding: 30px;
@@ -112,6 +135,7 @@
             padding: 12px;
             margin: 10px 0;
             border: 1px solid #ddd;
+            font-family: inherit;
         }
 
         button {
@@ -136,36 +160,55 @@
         
         <div class="names-section">
             <p class="names">Vinicius <span class="ampersand">&</span> Cyntia</p>
-            <p style="color: #999; margin-top: 10px;">25 DE Abril DE 2026</p>
+            <p style="color: #999; margin-top: 10px;">25 DE ABRIL DE 2026</p>
         </div>
 
-        <!-- Galeria de Fotos -->
         <div class="photo-gallery">
             <div class="gallery-grid">
-                <div class="photo-item"><img src="fotos/foto1.jpeg" alt="Foto 1"></div>
-                <div class="photo-item"><img src="fotos/foto2.jpeg" alt="Foto 2"></div>
-                <div class="photo-item"><img src="fotos/foto3.jpeg" alt="Foto 3"></div>
-                 <div class="photo-item"><img src="fotos/foto4.jpeg" alt="Foto 4"></div>
-                 <div class="photo-item"><img src="fotos/foto5.jpeg" alt="Foto 5"></div>
-                  <div class="photo-item"><img src="fotos/foto6.jpeg" alt="Foto 6"></div>
-                  <div class="photo-item"><img src="fotos/foto7.jpeg" alt="Foto 7"></div>
-                  <div class="photo-item"><img src="fotos/foto8.jpeg" alt="Foto 8"></div>
+                <!-- Se você subir as fotos para uma pasta assets/images/ elas aparecerão aqui -->
+                <div class="photo-item"><img src="assets/images/foto1.jpg" alt="Foto 1"></div>
+                <div class="photo-item"><img src="assets/images/foto2.jpg" alt="Foto 2"></div>
+                <div class="photo-item"><img src="assets/images/foto3.jpg" alt="Foto 3"></div>
+                <div class="photo-item"><img src="assets/images/foto4.jpg" alt="Foto 4"></div>
+                <div class="photo-item"><img src="assets/images/foto5.jpg" alt="Foto 5"></div>
+                <div class="photo-item"><img src="assets/images/foto6.jpg" alt="Foto 6"></div>
+                <div class="photo-item"><img src="assets/images/foto7.jpg" alt="Foto 7"></div>
+                <div class="photo-item"><img src="assets/images/foto8.jpg" alt="Foto 8"></div>
+            </div>
         </div>
 
         <div class="quote-section">
-            <p class="quote">"O amor é paciente, é bondoso... Tudo sofre, tudo crê, tudo espera, tudo suporta."</p>
+            <p class="quote">""O amor é paciente, é bondoso... Tudo sofre, tudo crê, tudo espera, tudo suporta."</p>
         </div>
 
-        </div>
+        <div class="messages-display" id="messagesList"></div>
 
-        <p style="margin-top: 40px; font-style: italic; color: var(--primary);">Com carinho e votos de uma vida linda juntos. Um presente de coração e muito amor e felicidades pra vocês. Ass: Gabriel.</p>
+       
+
+        <p style="margin-top: 40px; font-style: italic; color: var(--primary);">Com carinho e votos de uma vida linda juntos. Espero que gostem dessa carta de coração e muito amor, felicades aos dois. Ass: Gabriel</p>
         <div class="decorative-line"></div>
     </div>
 
     <script>
-        document.getElementById('wishForm').addEventListener('submit', function(e) {
+        const wishForm = document.getElementById('wishForm');
+        const messagesList = document.getElementById('messagesList');
+
+        function addMessageToScreen(name, text) {
+            const card = document.createElement('div');
+            card.className = 'message-card';
+            card.innerHTML = `
+                <div class="message-author">${name}</div>
+                <div class="message-text">"${text}"</div>
+            `;
+            messagesList.prepend(card);
+        }
+
+        wishForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Obrigado! Sua mensagem foi enviada com sucesso. ❤️');
+            const name = document.getElementById('wishName').value;
+            const text = document.getElementById('wishText').value;
+            addMessageToScreen(name, text);
+            alert('Obrigado! Sua mensagem foi adicionada. ❤️');
             this.reset();
         });
     </script>
